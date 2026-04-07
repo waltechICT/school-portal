@@ -14,7 +14,7 @@
 
         <form action="{{ route('admin.classes.store') }}" method="POST">
             @csrf
-            <div class="card-body p-4">
+            <div class="card-body p-3 p-md-4">
                 <div class="mb-3">
                     <label for="name" class="form-label">Class Name</label>
                     <input type="text" name="name" value="{{ old("name") }}" id="name" class="form-control" required>
@@ -28,7 +28,9 @@
                     <textarea name="description" id="description" class="form-control" rows="4"></textarea>
                 </div> --}}
 
-                <button type="submit" class="btn btn-primary">Create Class</button>
+                <div class="d-grid d-md-block mt-3">
+                    <button type="submit" class="btn btn-primary">Create Class</button>
+                </div>
             </div>
         </form>
     </div>

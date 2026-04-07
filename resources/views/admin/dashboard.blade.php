@@ -55,7 +55,7 @@
 @endphp
 
 <div class="card border border-light shadow-sm rounded-4 overflow-hidden mt-2">
-    <div class="card-header bg-white p-4 border-bottom d-flex justify-content-between align-items-center">
+    <div class="card-header bg-white p-4 border-bottom d-flex flex-wrap gap-2 justify-content-between align-items-center">
         <h5 class="fw-bold text-dark mb-0 fs-6">Recent System Activity</h5>
         <button class="btn btn-link text-decoration-none fw-semibold p-0" style="color: #4f46e5; font-size: 0.875rem;">View All</button>
     </div>

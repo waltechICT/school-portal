@@ -11,14 +11,14 @@
         </div>
 
         <div class="card border border-light shadow-sm rounded-4 overflow-hidden">
-            <div class="card-header bg-white p-4 border-bottom d-flex justify-content-between align-items-center">
+            <div class="card-header bg-white p-4 border-bottom d-flex flex-wrap gap-2 justify-content-between align-items-center">
                 <h5 class="fw-bold text-dark mb-0 fs-6">Class Details</h5>
                 <a href="{{ route('admin.classes.index') }}" class="btn btn-sm btn-secondary">
                     <i class="fa-solid fa-arrow-left"></i> Back to List
                 </a>
             </div>
             
-            <div class="card-body p-4">
+            <div class="card-body p-3 p-md-4">
                 <h5 class="mb-3">Class Name: {{ $school_class->name }}</h5>
                 <p><strong>Status:</strong> 
                     @if ($school_class->is_enabled)

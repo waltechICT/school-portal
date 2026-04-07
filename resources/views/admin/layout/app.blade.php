@@ -22,7 +22,7 @@
         #sidebar {
             min-width: 250px;
             max-width: 250px;
-            min-height: 100vh;
+            height: 100vh;
             background: #0f172a;
             color: #fff;
             transition: all 0.3s;
@@ -30,6 +30,21 @@
             top: 0;
             left: 0;
             z-index: 1000;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #0f172a;
+        }
+
+        #sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        #sidebar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        #sidebar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 10px;
         }
 
         #sidebar.collapsed {
@@ -180,11 +195,47 @@
             border-radius: 12px;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+            #sidebar.mobile-open {
+                transform: translateX(0);
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            #content {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+            #sidebar.collapsed + #content {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+            .mobile-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.4);
+                z-index: 999;
+                display: none;
+            }
+            .mobile-backdrop.show {
+                display: block;
+            }
+            /* Make navbar layout cleaner on small screens */
+            .navbar h5.mb-0 {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 
 <body>
-
+    <div class="mobile-backdrop" id="sidebarBackdrop"></div>
     <div id="wrapper">
         <nav id="sidebar" class="d-flex flex-column flex-shrink-0">
             <div class="p-3 fs-4 fw-bold border-bottom border-secondary text-center d-flex justify-content-center align-items-center"
@@ -229,8 +280,8 @@
                         <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
                     </a>
                     <ul class="sidebar-dropdown-menu">
-                        <li><a href="#">All Subjects</a></li>
-                        <li><a href="#">Add Subject</a></li>
+                        <li><a href="{{ route('admin.subjects.index') }}">All Subjects</a></li>
+                        <li><a href="{{ route('admin.subjects.create') }}">Add Subject</a></li>
                         <li><a href="#">Subject Schedules</a></li>
                     </ul>
                 </li>
@@ -313,34 +364,34 @@
         </nav>
 
         <div id="content">
-            <nav class="navbar navbar-expand-lg px-4 py-3 border-bottom bg-white">
-                <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg px-2 px-md-4 py-2 py-md-3 border-bottom bg-white">
+                <div class="container-fluid px-1 px-md-2">
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border-0 me-3 shadow-sm" id="sidebarToggle">
+                        <button class="btn btn-light border-0 me-2 shadow-sm" id="sidebarToggle">
                             <i class="fa-solid fa-bars fs-5"></i>
                         </button>
                         {{-- back button --}}
-                        <h5 class="mb-0 fw-bold text-dark">
-                            <a href="{{ url()->previous() ?? route('admin.dashboard') }}" class="btn btn-light border-0 ms-3 shadow-sm"
-                                title="Go Back">
-                                <i class="fa-solid fa-arrow-left fs-5"></i>
-                            </a> &nbsp;
+                        <a href="{{ url()->previous() ?? route('admin.dashboard') }}" class="btn btn-light border-0 mx-2 shadow-sm d-none d-md-inline-block"
+                            title="Go Back">
+                            <i class="fa-solid fa-arrow-left fs-5"></i>
+                        </a>
+                        <h5 class="mb-0 fw-bold text-dark text-truncate" style="max-width: 150px;">
                             @yield('page_title', 'Dashboard')
                         </h5>
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border-0 me-2 shadow-sm" onclick="toggleFullScreen()"
+                        <button class="btn btn-light border-0 me-2 shadow-sm d-none d-sm-inline-block" onclick="toggleFullScreen()"
                             title="Full Screen">
                             <i class="fa-solid fa-expand"></i>
                         </button>
 
-                        <div class="vr mx-3 text-muted" style="height: 25px; align-self: center;"></div>
+                        <div class="vr mx-2 mx-sm-3 text-muted d-none d-sm-block" style="height: 25px; align-self: center;"></div>
 
                         <div class="dropdown">
-                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#"
+                            <a class="d-flex align-items-center text-decoration-none" href="#"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="me-2 fw-medium text-dark">{{ Auth::user()->name ?? 'Admin' }}</span>
+                                <span class="me-2 fw-medium text-dark d-none d-sm-inline-block">{{ Auth::user()->name ?? 'Admin' }}</span>
                                 <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center shadow-sm"
                                     style="width: 38px; height: 38px; font-size: 1.1rem;">
                                     {{ substr(Auth::user()->name ?? 'A', 0, 1) }}
@@ -392,7 +443,7 @@
 
 
 
-            <main class="container-fluid p-4 flex-grow-1 overflow-y-auto">
+            <main class="container-fluid p-2 p-md-4 flex-grow-1 overflow-y-auto">
                 @yield('content')
             </main>
         </div>
@@ -404,16 +455,28 @@
         // Sidebar Toggle Logic
         const sidebar = document.getElementById('sidebar');
         const toggleBtn = document.getElementById('sidebarToggle');
+        const backdrop = document.getElementById('sidebarBackdrop');
 
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-
-            // If sidebar collapses, forcefully close any open dropdowns to prevent visual bugs
-            if (sidebar.classList.contains('collapsed')) {
-                document.querySelectorAll('.has-dropdown.open').forEach(el => {
-                    el.classList.remove('open');
-                });
+        function toggleSidebar() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.toggle('mobile-open');
+                backdrop.classList.toggle('show');
+            } else {
+                sidebar.classList.toggle('collapsed');
+                // If sidebar collapses, forcefully close any open dropdowns to prevent visual bugs
+                if (sidebar.classList.contains('collapsed')) {
+                    document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                        el.classList.remove('open');
+                    });
+                }
             }
+        }
+
+        toggleBtn.addEventListener('click', toggleSidebar);
+        
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-open');
+            backdrop.classList.remove('show');
         });
 
         // --- Sidebar Dropdown Menu Logic ---

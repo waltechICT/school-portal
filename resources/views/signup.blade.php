@@ -14,7 +14,8 @@
     @include('includes.nav')
     <div class="container mt-5">
         <h2 class="mb-4">Create an Account</h2>
-        <form method="get" action="/register">
+        <form method="POST" action="/register">
+            @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>

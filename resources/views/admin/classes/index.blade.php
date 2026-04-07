@@ -16,12 +16,13 @@
     </div>
 
     <div class="card border border-light shadow-sm rounded-4 overflow-hidden">
-        <div class="card-header bg-white p-4 border-bottom d-flex justify-content-between align-items-center">
+        <div class="card-header bg-white p-4 border-bottom d-flex flex-wrap gap-2 justify-content-between align-items-center">
             <h5 class="fw-bold text-dark mb-0 fs-6">Class List</h5>
             <input type="text" class="form-control form-control-sm w-auto" placeholder="Search classes...">
         </div>
         <div class="card-body p-0">
-            <table class="table table-hover mb-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
                 <thead class="bg-light">
                     <tr>
                         <th scope="col" class="px-4 py-3">SN</th>
@@ -44,22 +45,25 @@
                             @endif
                         </td>
                         <td class="px-4 py-3">
-                            <a href="{{ route('admin.classes.show', $school_class->id) }}" class="btn btn-sm btn-info">
-                                <i class="fa-solid fa-eye"></i> View
-                            </a>
-                            <a href="{{ route('admin.classes.edit', $school_class->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa-solid fa-pencil"></i> Edit
-                            </a>
-                            <form action="{{ route('admin.classes.destroy', $school_class->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to delete this class?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
-                            </form>
+                            <div class="d-flex flex-nowrap gap-1">
+                                <a href="{{ route('admin.classes.show', $school_class->id) }}" class="btn btn-sm btn-info text-nowrap">
+                                    <i class="fa-solid fa-eye"></i> View
+                                </a>
+                                <a href="{{ route('admin.classes.edit', $school_class->id) }}" class="btn btn-sm btn-warning text-nowrap">
+                                    <i class="fa-solid fa-pencil"></i> Edit
+                                </a>
+                                <form action="{{ route('admin.classes.destroy', $school_class->id) }}" method="POST" class="d-inline-block m-0" onsubmit="return confirm('Are you sure you want to delete this class?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger text-nowrap"><i class="fa-solid fa-trash"></i> Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>
