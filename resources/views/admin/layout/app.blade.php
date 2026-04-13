@@ -256,9 +256,34 @@
 
                 <li class="nav-section-title">Network Audit</li>
 
+                {{--Student management--}}
+                <li class="nav-item has-dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-user-graduate fa-fw"></i>
+                        <span>Students</span>
+                        <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+                    </a>
+                    <ul class="sidebar-dropdown-menu">
+                        <li><a href="{{ route('admin.students.index') }}">All Students</a></li>
+                        <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
+                    </ul>
+                </li>
 
 
-                {{-- Classes dropdown menu --}}
+                {{-- arms dropdown menu --}}
+                <li class="nav-item has-dropdown">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-chalkboard-user fa-fw"></i>
+                        <span>Arms/Stream</span>
+                        <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+                    </a>
+                    <ul class="sidebar-dropdown-menu">
+                        <li><a href="{{ route('admin.arms.index') }}">All Arms/Streams</a></li>
+                        <li><a href="{{ route('admin.arms.create') }}">Add Arm/Stream</a></li>
+                    </ul>
+                </li>
+                
+                {{-- classes dropdown menu --}}
                 <li class="nav-item has-dropdown">
                     <a href="#" class="nav-link">
                         <i class="fa-solid fa-chalkboard-user fa-fw"></i>

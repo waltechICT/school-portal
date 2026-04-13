@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\ArmController;
+use App\Http\Controllers\Admin\StudentController;
 
 
 Route::middleware('auth')->group(function () {
@@ -25,4 +27,20 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/subjects/{id}/edit',[SubjectController::class, 'edit'])->name('admin.subjects.edit');
     Route::put('admin/subjects/{id}/update',[SubjectController::class, 'update'])->name('admin.subjects.update');
     Route::delete('admin/delete-subject/{id}',[SubjectController::class, 'destroy'])->name('admin.subjects.destroy');
+
+    Route::get('admin/arms',[ArmController::class, 'index'])->name('admin.arms.index');
+    Route::get('admin/arms/create',[ArmController::class, 'create'])->name('admin.arms.create');
+    Route::post('admin/arms/store',[ArmController::class, 'store'])->name('admin.arms.store');
+    Route::get('admin/arms/{id}',[ArmController::class, 'show'])->name('admin.arms.show');
+    Route::get('admin/arms/{id}/edit',[ArmController::class, 'edit'])->name('admin.arms.edit');
+    Route::put('admin/arms/{id}/update',[ArmController::class, 'update'])->name('admin.arms.update');
+    Route::delete('admin/delete-arm/{id}',[ArmController::class, 'destroy'])->name('admin.arms.destroy');
+
+    Route::get('admin/students',[StudentController::class, 'index'])->name('admin.students.index');
+    Route::get('admin/students/create',[StudentController::class, 'create'])->name('admin.students.create');
+    Route::post('admin/students/store',[StudentController::class, 'store'])->name('admin.students.store');
+    Route::get('admin/students/{id}',[StudentController::class, 'show'])->name('admin.students.show');
+    Route::get('admin/students/{id}/edit',[StudentController::class, 'edit'])->name('admin.students.edit');
+    Route::put('admin/students/{id}/update',[StudentController::class, 'update'])->name('admin.students.update');
+    Route::delete('admin/delete-student/{id}',[StudentController::class, 'destroy'])->name('admin.students.destroy');
 });

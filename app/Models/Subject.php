@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\SchoolClass;
 class Subject extends Model
 {
     protected $casts = [
@@ -13,6 +13,7 @@ class Subject extends Model
     public function getSchoolClassesAttribute()
     {
         $ids = $this->school_classes_id ?? [];
-        return \App\Models\SchoolClass::whereIn('id', $ids)->get();
+        return SchoolClass::whereIn('id', $ids)->where('is_enabled','1')->get();
     }
+
 }

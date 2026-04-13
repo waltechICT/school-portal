@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SchoolClass extends Model
+class Arm extends Model
 {
     protected $fillable = ['name', 'is_enabled'];
 
     public function students()
     {
-        return $this->hasMany(Student::class, 'class_id');
+        return $this->hasMany(Student::class, 'arm_id');
     }
 }
