@@ -28,7 +28,7 @@
                             <th scope="col" class="px-3 py-3">Student</th>
                             <th scope="col" class="px-3 py-3 d-none d-md-table-cell">Admission No.</th>
                             <th scope="col" class="px-3 py-3 d-none d-lg-table-cell">Class</th>
-                            <th scope="col" class="px-3 py-3 d-none d-lg-table-cell">Arm</th>
+                            <th scope="col" class="px-3 py-3 d-none d-lg-table-cell">Arm/stream</th>
                             <th scope="col" class="px-3 py-3 d-none d-xl-table-cell">Sex</th>
                             <th scope="col" class="px-3 py-3">Is_Enabled</th>
                             <th scope="col" class="px-3 py-3">Actions</th>

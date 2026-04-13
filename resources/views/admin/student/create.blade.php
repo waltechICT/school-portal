@@ -90,9 +90,9 @@
                                 @error('class_id') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-12 col-sm-6">
-                                <label for="arm_id" class="form-label fw-medium">Arm</label>
+                                <label for="arm_id" class="form-label fw-medium">Arm/stream</label>
                                 <select name="arm_id" id="arm_id" class="form-select bg-light border-0 py-2 px-3 rounded-3 @error('arm_id') is-invalid @enderror" required>
-                                    <option value="">Select Arm</option>
+                                    <option value="">Select Arm/stream</option>
                                     @foreach($arms as $arm)
                                         <option value="{{ $arm->id }}" {{ old('arm_id') == $arm->id ? 'selected' : '' }}>{{ $arm->name }}</option>
                                     @endforeach
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label for="guardian_address" class="form-label fw-medium">Guardian Address</label>
-                                <input type="text" name="guardian_address" id="guardian_address" class="form-control bg-light border-0 py-2 px-3 rounded-3 @error('guardian_address') is-invalid @enderror" value="{{ old('guardian_address') }}" placeholder="Home address" required>
+                                <textarea name="guardian_address" id="guardian_address" class="form-control bg-light border-0 py-2 px-3 rounded-3 @error('guardian_address') is-invalid @enderror" placeholder="Home address" required>{{ old('guardian_address') }}</textarea>
                                 @error('guardian_address') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                             </div>
                         </div>

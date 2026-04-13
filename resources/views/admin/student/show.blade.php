@@ -77,7 +77,7 @@
                             <p class="form-control-plaintext bg-light rounded-3 py-2 px-3 mb-0">{{ $student->schoolClass->name ?? 'N/A' }}</p>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <label class="form-label fw-medium text-muted small">Arm</label>
+                            <label class="form-label fw-medium text-muted small">Arm/stream</label>
                             <p class="form-control-plaintext bg-light rounded-3 py-2 px-3 mb-0">{{ $student->arm->name ?? 'N/A' }}</p>
                         </div>
                         <div class="col-12"><hr class="text-muted opacity-25 my-1"></div>
