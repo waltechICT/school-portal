@@ -235,6 +235,20 @@
                     </ul>
                 </li>
 
+                {{-- staff management dropdown menu --}}
+                <li class="nav-item has-dropdown">
+                    <a href="{{ route('admin.staff.management') }}" class="nav-link">
+                        <i class="fa-solid fa-users-gear fa-fw"></i>
+                        <span>Staff Management</span>
+                        <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+                    </a>
+                    <ul class="sidebar-dropdown-menu">
+                        {{-- <li><a href="{{ route('admin.staff.management') }}">Add staff</a></li> --}}
+                        <li><a href="{{ route('admin.staff.index') }}">All Staff</a></li>
+                        <li><a href="{{ route('admin.staff.create') }}">Add Staff</a></li>
+                    </ul>
+                </li>
+
                 {{--  --}}
 
                 {{-- teachers dropdown menu --}}
@@ -457,7 +471,7 @@
                 toastr.{{ $msg }}("{{ session($msg) }}");
             </script>
         @endif
-        
+
     @endforeach
 
     {{-- <script>

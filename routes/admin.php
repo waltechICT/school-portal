@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -16,5 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/classes/{id}/edit',[SchoolClassController::class, 'edit'])->name('admin.classes.edit');
     Route::put('admin/classes/{id}/update',[SchoolClassController::class, 'update'])->name('admin.classes.update');
     Route::delete('admin/delete-class/{id}',[SchoolClassController::class, 'destroy'])->name('admin.classes.destroy');
+
+    Route::resource('admin/staff', StaffController::class, ['as' => 'admin']);
+
+    Route::get('/admin/staff-management', [StaffController::class, 'management'])->name('admin.staff.management');
 
 });
