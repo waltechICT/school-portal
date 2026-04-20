@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\ArmController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SchoolInfoController;
+use App\Http\Controllers\Admin\RoleController;
 
 
 
@@ -45,6 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/students/{id}/edit',[StudentController::class, 'edit'])->name('admin.students.edit');
     Route::put('admin/students/{id}/update',[StudentController::class, 'update'])->name('admin.students.update');
     Route::delete('admin/delete-student/{id}',[StudentController::class, 'destroy'])->name('admin.students.destroy');
+
+    Route::get('admin/roles',[RoleController::class, 'index'])->name('admin.roles.index');
+    Route::get('admin/roles/create',[RoleController::class, 'create'])->name('admin.roles.create');
+    Route::post('admin/roles/store',[RoleController::class, 'store'])->name('admin.roles.store');
+    Route::get('admin/roles/{id}/edit',[RoleController::class, 'edit'])->name('admin.roles.edit');
+    Route::put('admin/roles/{id}/update',[RoleController::class, 'update'])->name('admin.roles.update');
+    Route::delete('admin/delete-role/{id}',[RoleController::class, 'destroy'])->name('admin.roles.destroy');
 
     Route::get('admin/school-info',[SchoolInfoController::class, 'index'])->name('admin.school-info.index');
     Route::get('admin/school-info/create',[SchoolInfoController::class, 'create'])->name('admin.school-info.create');

@@ -30,6 +30,7 @@
                             <th scope="col" class="px-3 py-3 d-none d-lg-table-cell">Class</th>
                             <th scope="col" class="px-3 py-3 d-none d-lg-table-cell">Arm/stream</th>
                             <th scope="col" class="px-3 py-3 d-none d-xl-table-cell">Sex</th>
+                            <th scope="col" class="px-3 py-3 d-none d-xl-table-cell">Role</th>
                             <th scope="col" class="px-3 py-3">Is_Enabled</th>
                             <th scope="col" class="px-3 py-3">Actions</th>
                         </tr>
@@ -54,6 +55,7 @@
                             <td class="px-3 py-2 small d-none d-lg-table-cell">{{ $student->schoolClass->name ?? 'N/A' }}</td>
                             <td class="px-3 py-2 small d-none d-lg-table-cell">{{ $student->arm->name ?? 'N/A' }}</td>
                             <td class="px-3 py-2 small d-none d-xl-table-cell">{{ $student->sex }}</td>
+                            <td class="px-3 py-2 small d-none d-xl-table-cell">{{ $student->role->name ?? 'N/A' }}</td>
                             <td class="px-3 py-2">
                                 @if ($student->is_enabled)
                                     <span class="badge bg-success">Enabled</span>

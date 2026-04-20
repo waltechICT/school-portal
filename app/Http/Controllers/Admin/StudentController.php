@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\SchoolClass;
 use App\Models\Arm;
+use App\Models\Role;
 use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
@@ -16,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data['students'] = Student::with(['schoolClass', 'arm'])
+        $data['students'] = Student::with(['schoolClass', 'arm', 'role'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         return view('admin.student.index', $data);
@@ -29,6 +30,7 @@ class StudentController extends Controller
     {
         $data['classes'] = SchoolClass::get();
         $data['arms'] = Arm::get();
+        $data['roles'] = Role::get();
         return view('admin.student.create', $data);
     }
 
@@ -44,6 +46,7 @@ class StudentController extends Controller
             'other_names'        => 'required|string|max:50',
             'class_id'           => 'required|exists:school_classes,id',
             'arm_id'             => 'required|exists:arms,id',
+            'role_id'            => 'required|exists:roles,id',
             'sex'                => 'required|in:Male,Female',
             'date_of_birth'      => 'required|date',
             'guardian_name'      => 'required|string|max:50',
@@ -60,6 +63,7 @@ class StudentController extends Controller
         $student->other_names         = $request->other_names;
         $student->class_id            = $request->class_id;
         $student->arm_id              = $request->arm_id;
+        $student->role_id             = $request->role_id;
         $student->sex                 = $request->sex;
         $student->date_of_birth       = $request->date_of_birth;
         $student->guardian_name       = $request->guardian_name;
@@ -97,6 +101,7 @@ class StudentController extends Controller
         $data['student'] = Student::findOrFail($id);
         $data['classes'] = SchoolClass::get();
         $data['arms'] = Arm::get();
+        $data['roles'] = Role::get();
         return view('admin.student.edit', $data);
     }
 
@@ -114,6 +119,7 @@ class StudentController extends Controller
             'other_names'        => 'required|string|max:50',
             'class_id'           => 'required|exists:school_classes,id',
             'arm_id'             => 'required|exists:arms,id',
+            'role_id'            => 'required|exists:roles,id',
             'sex'                => 'required|in:Male,Female',
             'date_of_birth'      => 'required|date',
             'guardian_name'      => 'required|string|max:50',
@@ -130,6 +136,7 @@ class StudentController extends Controller
         $student->other_names         = $request->other_names;
         $student->class_id            = $request->class_id;
         $student->arm_id              = $request->arm_id;
+        $student->role_id             = $request->role_id;
         $student->sex                 = $request->sex;
         $student->date_of_birth       = $request->date_of_birth;
         $student->guardian_name       = $request->guardian_name;

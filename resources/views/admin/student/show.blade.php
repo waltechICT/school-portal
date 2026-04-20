@@ -45,6 +45,10 @@
                             <p class="form-control-plaintext bg-light rounded-3 py-2 px-3 mb-0">{{ $student->other_names }}</p>
                         </div>
                         <div class="col-12 col-sm-6">
+                            <label class="form-label fw-medium text-muted small">Role</label>
+                            <p class="form-control-plaintext bg-light rounded-3 py-2 px-3 mb-0">{{ $student->role->name ?? 'N/A' }}</p>
+                        </div>
+                        <div class="col-12 col-sm-6">
                             <label class="form-label fw-medium text-muted small">Status</label>
                             <p class="form-control-plaintext mb-0 ps-1">
                                 @if ($student->is_enabled)

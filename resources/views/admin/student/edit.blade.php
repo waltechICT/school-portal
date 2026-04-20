@@ -48,6 +48,16 @@
                                 @error('other_names') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-12 col-sm-6">
+                                <label for="role_id" class="form-label fw-medium">Role</label>
+                                <select name="role_id" id="role_id" class="form-select bg-light border-0 py-2 px-3 rounded-3 @error('role_id') is-invalid @enderror" required>
+                                    <option value="">Select Role</option>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" {{ old('role_id', $student->role_id) == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('role_id') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
+                             </div>
+                            <div class="col-12 col-sm-6">
                                 <label for="is_enabled" class="form-label fw-medium">Status</label>
                                 <select name="is_enabled" id="is_enabled" class="form-select bg-light border-0 py-2 px-3 rounded-3 @error('is_enabled') is-invalid @enderror" required>
                                     <option value="1" {{ old('is_enabled', $student->is_enabled) == 1 ? 'selected' : '' }}>Enabled</option>

@@ -13,6 +13,7 @@ class Student extends Model
         'other_names',
         'class_id',
         'arm_id',
+        'role_id',
         'sex',
         'date_of_birth',
         'guardian_name',
@@ -31,5 +32,10 @@ class Student extends Model
     public function arm()
     {
         return $this->belongsTo(Arm::class, 'arm_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }
