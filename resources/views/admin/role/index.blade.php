@@ -32,6 +32,7 @@
                         <tr>
                             <th scope="col" class="px-4 py-3">SN</th>
                             <th scope="col" class="px-4 py-3">Role Name</th>
+                            <th scope="col" class="px-4 py-3">Is Enabled</th>
                             <th scope="col" class="px-4 py-3">Created</th>
                             <th scope="col" class="px-4 py-3">Actions</th>
                         </tr>
@@ -41,6 +42,13 @@
                         <tr>
                             <td class="px-4 py-3">{{ $roles->firstItem() + $key }}</td>
                             <td class="px-4 py-3 fw-semibold">{{ $role->name }}</td>
+                            <td class="px-4 py-3">
+                                @if ($role->is_enabled)
+                                    <span class="badge bg-success">Enabled</span>
+                                @else
+                                    <span class="badge bg-danger">Disabled</span>
+                                @endif
+                            </td>
                             <td class="px-4 py-3 text-muted small">{{ $role->created_at->format('d M Y') }}</td>
                             <td class="px-4 py-3">
                                 <div class="d-flex flex-nowrap gap-1">

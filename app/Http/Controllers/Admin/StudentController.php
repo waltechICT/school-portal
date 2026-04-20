@@ -30,7 +30,7 @@ class StudentController extends Controller
     {
         $data['classes'] = SchoolClass::get();
         $data['arms'] = Arm::get();
-        $data['roles'] = Role::get();
+        $data['roles'] = Role::where('is_enabled', 1)->get();
         return view('admin.student.create', $data);
     }
 
@@ -101,7 +101,7 @@ class StudentController extends Controller
         $data['student'] = Student::findOrFail($id);
         $data['classes'] = SchoolClass::get();
         $data['arms'] = Arm::get();
-        $data['roles'] = Role::get();
+        $data['roles'] = Role::where('is_enabled', 1)->get();
         return view('admin.student.edit', $data);
     }
 

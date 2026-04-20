@@ -34,7 +34,7 @@ class RoleController extends Controller
             'name' => 'required|string|max:100|unique:roles,name',
         ]);
 
-        Role::create(['name' => $request->name]);
+        Role::create(['name' => $request->name, 'is_enabled' => $request->is_enabled]);
 
         return redirect()->route('admin.roles.index')->with('success', 'Role created successfully.');
     }
@@ -59,7 +59,7 @@ class RoleController extends Controller
             'name' => 'required|string|max:100|unique:roles,name,' . $id,
         ]);
 
-        $role->update(['name' => $request->name]);
+        $role->update(['name' => $request->name, 'is_enabled' => $request->is_enabled]);
 
         return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully.');
     }

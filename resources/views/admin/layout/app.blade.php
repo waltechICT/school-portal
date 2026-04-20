@@ -344,6 +344,19 @@
                     </ul>
                 </li>
 
+                {{--roles--}}
+                <li class="nav-item has-dropdown">
+                    <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                        <i class="fa-solid fa-school fa-fw"></i>
+                        <span>Roles</span>
+                        <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+                    </a>
+                    <ul class="sidebar-dropdown-menu">
+                        <li><a href="{{ route('admin.roles.index') }}">All Roles</a></li>
+                        <li><a href="{{ route('admin.roles.create') }}">Add Role</a></li>
+                    </ul>   
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fa-solid fa-user-slash fa-fw"></i> <span>Banned Accounts</span>

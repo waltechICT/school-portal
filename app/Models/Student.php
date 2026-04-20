@@ -36,6 +36,6 @@ class Student extends Model
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class, 'role_id')->where('is_enabled', '1');
     }
 }

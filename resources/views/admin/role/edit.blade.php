@@ -36,6 +36,19 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+                    <label for="is_enabled" class="form-label fw-semibold">Is Enabled</label>
+                    <select name="is_enabled" id="is_enabled"
+                            class="form-select @error('is_enabled') is-invalid @enderror"
+                            required>
+                        <option value="1" {{ $role->is_enabled ? 'selected' : '' }}>Enabled</option>
+                        <option value="0" {{ !$role->is_enabled ? 'selected' : '' }}>Disabled</option>
+                    </select>
+                    @error('is_enabled')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="d-grid d-md-block mt-3">
                     <button type="submit" class="btn btn-primary">
                         <i class="fa-solid fa-save"></i> Update Role
