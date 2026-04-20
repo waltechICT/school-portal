@@ -313,36 +313,23 @@
 
                 {{--  --}}
 
-                {{-- teachers dropdown menu --}}
+                {{-- school info dropdown menu --}}
                 <li class="nav-item has-dropdown">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-chalkboard-teacher fa-fw"></i>
-                        <span>Teachers</span>
+                    <a href="{{ route('admin.school-info.index') }}" class="nav-link">
+                        <i class="fa-solid fa-school fa-fw"></i>
+                        <span>School Info</span>
                         <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
                     </a>
                     <ul class="sidebar-dropdown-menu">
-                        <li><a href="#">All Teachers</a></li>
-                        <li><a href="#">Add Teacher</a></li>
-                        <li><a href="#">Teacher Performance</a></li>
-                    </ul>
+                        <li><a href="{{ route('admin.school-info.index') }}">All School Info</a></li>
+                        <li><a href="{{ route('admin.school-info.create') }}">Add School Info</a></li>
+                    </ul>   
                 </li>
 
 
 
-                {{-- students dropdown menu --}}
-                <li class="nav-item has-dropdown">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-graduation-cap fa-fw"></i>
-                        <span>Students</span>
-                        <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
-                    </a>
-                    <ul class="sidebar-dropdown-menu">
-                        <li><a href="#">All Students</a></li>
-                        <li><a href="#">Add Student</a></li>
-                        <li><a href="#">Student Performance</a></li>
-                    </ul>
-                </li>
-
+               
+            
 
                 <li class="nav-item has-dropdown">
                     <a class="nav-link">

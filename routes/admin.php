@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\ArmController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\SchoolInfoController;
+
 
 
 Route::middleware('auth')->group(function () {
@@ -43,4 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/students/{id}/edit',[StudentController::class, 'edit'])->name('admin.students.edit');
     Route::put('admin/students/{id}/update',[StudentController::class, 'update'])->name('admin.students.update');
     Route::delete('admin/delete-student/{id}',[StudentController::class, 'destroy'])->name('admin.students.destroy');
+
+    Route::get('admin/school-info',[SchoolInfoController::class, 'index'])->name('admin.school-info.index');
+    Route::get('admin/school-info/create',[SchoolInfoController::class, 'create'])->name('admin.school-info.create');
+    Route::post('admin/school-info/store',[SchoolInfoController::class, 'store'])->name('admin.school-info.store');
+    Route::get('admin/school-info/{id}',[SchoolInfoController::class, 'show'])->name('admin.school-info.show');
+    Route::get('admin/school-info/{id}/edit',[SchoolInfoController::class, 'edit'])->name('admin.school-info.edit');
+    Route::put('admin/school-info/{id}/update',[SchoolInfoController::class, 'update'])->name('admin.school-info.update');
+    Route::delete('admin/delete-school-info/{id}',[SchoolInfoController::class, 'destroy'])->name('admin.school-info.destroy');
 });
