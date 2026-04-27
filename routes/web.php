@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\SignupController;
-use App\Http\Controllers\SigninController;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
 use App\Http\Controllers\Admin\SessionController;
@@ -20,11 +18,6 @@ use App\Http\Controllers\Admin\SessionController;
 | middleware group. Make something great!
 |*/
 
-// Public Authentication Routes
-Route::get('/register', [SignupController::class, 'index']);
-Route::get('/login', [SigninController::class, 'index']);
-
-
 Route::get('/admin/activity', [SessionController::class, 'index'])->name('admin.activity');
 
 /*
@@ -33,13 +26,8 @@ Route::get('/admin/activity', [SessionController::class, 'index'])->name('admin.
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
-    if (auth()->user()->role === 'superadmin') {
-        return redirect()->route('admin.dashboard');
-    }
-    
-    // Redirect standard users to the actual /home URL
-    return redirect()->route('home');
-})->middleware(['auth'])->name('index'); // Changed name to 'index' to prevent collision
+    return redirect()->route('admin.dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 
@@ -72,7 +60,7 @@ Route::middleware('auth')->group(function () {
 | Standard User Routes (Protected by role.user)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'verified', 'role.user'])->group(function () {
+Route::middleware(['auth', 'role.user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/services', [ServicesController::class, 'index'])->name('services');
     Route::get('/training',[TrainingController::class, 'index'])->name('training');

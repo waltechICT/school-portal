@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -61,4 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/school-info/{id}/edit',[SchoolInfoController::class, 'edit'])->name('admin.school-info.edit');
     Route::put('admin/school-info/{id}/update',[SchoolInfoController::class, 'update'])->name('admin.school-info.update');
     Route::delete('admin/delete-school-info/{id}',[SchoolInfoController::class, 'destroy'])->name('admin.school-info.destroy');
+
+    Route::resource('admin/staff', StaffController::class, ['as' => 'admin']);
+
+    Route::get('/admin/staff-management', [StaffController::class, 'management'])->name('admin.staff.management');
+
 });
+
