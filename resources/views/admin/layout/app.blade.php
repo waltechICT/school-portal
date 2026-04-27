@@ -39,9 +39,11 @@
         #sidebar::-webkit-scrollbar {
             width: 6px;
         }
+
         #sidebar::-webkit-scrollbar-track {
             background: #0f172a;
         }
+
         #sidebar::-webkit-scrollbar-thumb {
             background-color: #475569;
             border-radius: 10px;
@@ -201,31 +203,37 @@
             #sidebar {
                 transform: translateX(-100%);
             }
+
             #sidebar.mobile-open {
                 transform: translateX(0);
                 box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
             }
+
             #content {
                 margin-left: 0 !important;
                 width: 100% !important;
             }
-            #sidebar.collapsed + #content {
+
+            #sidebar.collapsed+#content {
                 margin-left: 0 !important;
                 width: 100% !important;
             }
+
             .mobile-backdrop {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: rgba(0,0,0,0.4);
+                background: rgba(0, 0, 0, 0.4);
                 z-index: 999;
                 display: none;
             }
+
             .mobile-backdrop.show {
                 display: block;
             }
+
             /* Make navbar layout cleaner on small screens */
             .navbar h5.mb-0 {
                 font-size: 1.1rem;
@@ -237,9 +245,11 @@
 <body>
     <div class="mobile-backdrop" id="sidebarBackdrop"></div>
     <div id="wrapper">
-       
-        {{-- include nav  --}}
-        @include('admin.layout.nav')
+
+        <aside>
+            {{-- include sidebar --}}
+            @include('admin.layout.sidebar')
+        </aside>
 
 
         <div id="content">
@@ -250,8 +260,8 @@
                             <i class="fa-solid fa-bars fs-5"></i>
                         </button>
                         {{-- back button --}}
-                        <a href="{{ url()->previous() ?? route('admin.dashboard') }}" class="btn btn-light border-0 mx-2 shadow-sm d-none d-md-inline-block"
-                            title="Go Back">
+                        <a href="{{ url()->previous() ?? route('admin.dashboard') }}"
+                            class="btn btn-light border-0 mx-2 shadow-sm d-none d-md-inline-block" title="Go Back">
                             <i class="fa-solid fa-arrow-left fs-5"></i>
                         </a>
                         <h5 class="mb-0 fw-bold text-dark text-truncate" style="max-width: 150px;">
@@ -260,17 +270,19 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border-0 me-2 shadow-sm d-none d-sm-inline-block" onclick="toggleFullScreen()"
-                            title="Full Screen">
+                        <button class="btn btn-light border-0 me-2 shadow-sm d-none d-sm-inline-block"
+                            onclick="toggleFullScreen()" title="Full Screen">
                             <i class="fa-solid fa-expand"></i>
                         </button>
 
-                        <div class="vr mx-2 mx-sm-3 text-muted d-none d-sm-block" style="height: 25px; align-self: center;"></div>
+                        <div class="vr mx-2 mx-sm-3 text-muted d-none d-sm-block"
+                            style="height: 25px; align-self: center;"></div>
 
                         <div class="dropdown">
-                            <a class="d-flex align-items-center text-decoration-none" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="me-2 fw-medium text-dark d-none d-sm-inline-block">{{ Auth::user()->name ?? 'Admin' }}</span>
+                            <a class="d-flex align-items-center text-decoration-none" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span
+                                    class="me-2 fw-medium text-dark d-none d-sm-inline-block">{{ Auth::user()->name ?? 'Admin' }}</span>
                                 <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center shadow-sm"
                                     style="width: 38px; height: 38px; font-size: 1.1rem;">
                                     {{ substr(Auth::user()->name ?? 'A', 0, 1) }}
@@ -352,7 +364,7 @@
         }
 
         toggleBtn.addEventListener('click', toggleSidebar);
-        
+
         backdrop.addEventListener('click', () => {
             sidebar.classList.remove('mobile-open');
             backdrop.classList.remove('show');
@@ -402,20 +414,21 @@
 
     @endforeach
 
-    {{-- <script>
-        @if(session('success'))
+    {{--
+    <script>
+        @if (session('success'))
             toastr.success("{{ session('success') }}");
         @endif
 
-        @if(session('error'))
+        @if (session('error'))
             toastr.error("{{ session('error') }}");
         @endif
 
-        @if(session('info'))
+        @if (session('info'))
             toastr.info("{{ session('info') }}");
         @endif
 
-        @if(session('warning'))
+        @if (session('warning'))
             toastr.warning("{{ session('warning') }}");
         @endif
     </script> --}}

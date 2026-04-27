@@ -57,41 +57,7 @@
             </ul>
         </li>
 
-
-
-
-        {{--Student management--}}
-        <li class="nav-item has-dropdown">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-user-graduate fa-fw"></i>
-                <span>Students</span>
-                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
-            </a>
-            <ul class="sidebar-dropdown-menu">
-                <li><a href="{{ route('admin.students.index') }}">All Students</a></li>
-                <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
-            </ul>
-        </li>
-
-        {{-- staff management dropdown menu --}}
-        <li class="nav-item has-dropdown">
-            <a href="{{ route('admin.staff.management') }}" class="nav-link">
-                <i class="fa-solid fa-users-gear fa-fw"></i>
-                <span>Staff Management</span>
-                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
-            </a>
-            <ul class="sidebar-dropdown-menu">
-                {{-- <li><a href="{{ route('admin.staff.management') }}">Add staff</a></li> --}}
-                <li><a href="{{ route('admin.staff.index') }}">All Staff</a></li>
-                <li><a href="{{ route('admin.staff.create') }}">Add Staff</a></li>
-            </ul>
-        </li>
-
-
-
-
-
-
+        
         {{-- subject dropdown menu --}}
         <li class="nav-item has-dropdown">
             <a href="#" class="nav-link">
@@ -106,26 +72,6 @@
             </ul>
         </li>
 
-        {{-- --}}
-
-
-
-
-
-
-
-        <li class="nav-item has-dropdown">
-            <a class="nav-link">
-                <i class="fa-solid fa-cart-arrow-down fa-fw"></i>
-                <span>Products</span>
-                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
-            </a>
-            <ul class="sidebar-dropdown-menu">
-                <li><a href="#">Add Product</a></li>
-                <li><a href="#">View Products</a></li>
-                <li><a href="#">Categories</a></li>
-            </ul>
-        </li>
 
         {{--roles--}}
         <li class="nav-item has-dropdown">
@@ -137,6 +83,36 @@
             <ul class="sidebar-dropdown-menu">
                 <li><a href="{{ route('admin.roles.index') }}">All Roles</a></li>
                 <li><a href="{{ route('admin.roles.create') }}">Add Role</a></li>
+            </ul>
+        </li>
+
+
+
+ {{-- staff management dropdown menu --}}
+        <li class="nav-item has-dropdown">
+            <a href="{{ route('admin.staff.management') }}" class="nav-link">
+                <i class="fa-solid fa-users-gear fa-fw"></i>
+                <span>Staff Management</span>
+                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+            </a>
+            <ul class="sidebar-dropdown-menu">
+                {{-- <li><a href="{{ route('admin.staff.management') }}">Add staff</a></li> --}}
+                <li><a href="{{ route('admin.staff.index') }}">All Staff</a></li>
+                <li><a href="{{ route('admin.staff.create') }}">Add Staff</a></li>
+            </ul>
+        </li>
+
+
+        {{--Student management--}}
+        <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-user-graduate fa-fw"></i>
+                <span>Students</span>
+                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+            </a>
+            <ul class="sidebar-dropdown-menu">
+                <li><a href="{{ route('admin.students.index') }}">All Students</a></li>
+                <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
             </ul>
         </li>
 
