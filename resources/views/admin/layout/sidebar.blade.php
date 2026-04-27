@@ -116,6 +116,11 @@
             </ul>
         </li>
 
+        {{-- add other menus / tabs here --}}
+
+
+        {{-- end --}}
+
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa-solid fa-user-slash fa-fw"></i> <span>Banned Accounts</span>
