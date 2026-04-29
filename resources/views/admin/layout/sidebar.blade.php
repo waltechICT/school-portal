@@ -56,7 +56,7 @@
                 <li><a href="{{ route('admin.arms.create') }}">Add Arm/Stream</a></li>
             </ul>
         </li>
-
+ 
         
         {{-- subject dropdown menu --}}
         <li class="nav-item has-dropdown">
@@ -113,6 +113,8 @@
             <ul class="sidebar-dropdown-menu">
                 <li><a href="{{ route('admin.students.index') }}">All Students</a></li>
                 <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
+                {{-- promote student --}}
+                <li><a href="{{ route('admin.promote.index') }}">Promote / Demote</a></li>
             </ul>
         </li>
 

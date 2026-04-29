@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ArmController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SchoolInfoController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PromotionController;
 
 
 
@@ -43,10 +44,19 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/students',[StudentController::class, 'index'])->name('admin.students.index');
     Route::get('admin/students/create',[StudentController::class, 'create'])->name('admin.students.create');
     Route::post('admin/students/store',[StudentController::class, 'store'])->name('admin.students.store');
+
+    
+    
+    Route::get('admin/promote',[PromotionController::class, 'index'])->name('admin.promote.index');
+    Route::post('admin/promote/promote',[PromotionController::class, 'promote'])->name('admin.promote.promote');
+    Route::post('admin/promote/demote',[PromotionController::class, 'demote'])->name('admin.promote.demote');
+    Route::post('admin/promote/initiate',[PromotionController::class, 'initiatePromotion'])->name('admin.promote.initiate');
+
     Route::get('admin/students/{id}',[StudentController::class, 'show'])->name('admin.students.show');
     Route::get('admin/students/{id}/edit',[StudentController::class, 'edit'])->name('admin.students.edit');
     Route::put('admin/students/{id}/update',[StudentController::class, 'update'])->name('admin.students.update');
     Route::delete('admin/delete-student/{id}',[StudentController::class, 'destroy'])->name('admin.students.destroy');
+
 
     Route::get('admin/roles',[RoleController::class, 'index'])->name('admin.roles.index');
     Route::get('admin/roles/create',[RoleController::class, 'create'])->name('admin.roles.create');
