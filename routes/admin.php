@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/promote/promote',[PromotionController::class, 'promote'])->name('admin.promote.promote');
     Route::post('admin/promote/demote',[PromotionController::class, 'demote'])->name('admin.promote.demote');
     Route::post('admin/promote/initiate',[PromotionController::class, 'initiatePromotion'])->name('admin.promote.initiate');
+    Route::get('admin/promote/key',[PromotionController::class, 'keyGeneratePage'])->name('admin.promote.key');
+    Route::post('admin/promote/key',[PromotionController::class, 'generateKey'])->name('admin.promote.key.generate');
+    Route::delete('admin/promote/key/{id}',[PromotionController::class, 'deleteKey'])->name('admin.promote.key.delete');
 
     Route::get('admin/students/{id}',[StudentController::class, 'show'])->name('admin.students.show');
     Route::get('admin/students/{id}/edit',[StudentController::class, 'edit'])->name('admin.students.edit');

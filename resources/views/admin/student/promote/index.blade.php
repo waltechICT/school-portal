@@ -11,25 +11,16 @@
             <p class="text-muted small mb-0">Select a class to view its students, then promote or demote them.</p>
         </div>
         
-        <form action="{{ route('admin.promote.initiate') }}" method="POST" onsubmit="return confirm('Are you sure you want to initiate promotion for a new session?');">
+        <form action="{{ route('admin.promote.initiate') }}" method="POST" id="initiatePromotionForm">
             @csrf
-            <button type="submit" class="btn btn-sm btn-dark">
+            <input type="hidden" name="key" id="promotionKeyInput">
+            <button type="button" class="btn btn-sm btn-dark" onclick="promptPromotionKey()">
                 <i class="fa-solid fa-flag-checkered me-1"></i>Initiate Promotion
             </button>
         </form>
     </div>
 
-    @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fa-solid fa-triangle-exclamation me-2"></i>
-            <ul class="mb-0 ps-3">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
+    
 
     <div class="card border border-light shadow-sm rounded-4 mb-4">
         <div class="card-header bg-white p-3 border-bottom">
@@ -65,6 +56,7 @@
                 <i class="fa-solid fa-users-slash me-2"></i>No students found in this class.
             </div>
         @else
+        @php $allPromoted = $students->every('is_promoted'); @endphp
 
         <form id="promotionForm" method="POST" action="{{ route('admin.promote.promote') }}">
             @csrf
@@ -106,8 +98,7 @@
                                                type="checkbox"
                                                name="student_ids[]"
                                                value="{{ $student->id }}"
-                                               @disabled($student->is_promoted)
-                                               @if($student->is_promoted) title="Already promoted this session" @endif>
+                                               @if($student->is_promoted) title="Promoted — can demote" @endif>
                                     </td>
                                     <td class="px-3 py-2 text-muted small">{{ $key + 1 }}</td>
                                     <td class="px-3 py-2">
@@ -162,9 +153,11 @@
                             </select>
                         </div>
                         <div class="col-12 col-md-7 d-flex flex-wrap gap-2 pt-md-3">
-                            <button type="submit" formaction="{{ route('admin.promote.promote') }}" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to promote the selected students?')">
-                                <i class="fa-solid fa-circle-arrow-up me-1"></i>Promote Selected
-                            </button>
+                                    @if(!$allPromoted)
+                                    <button type="submit" formaction="{{ route('admin.promote.promote') }}" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to promote the selected students?')">
+                                        <i class="fa-solid fa-circle-arrow-up me-1"></i>Promote Selected
+                                    </button>
+                                    @endif
                             <button type="submit" formaction="{{ route('admin.promote.demote') }}" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure you want to demote the selected students?')">
                                 <i class="fa-solid fa-circle-arrow-down me-1"></i>Demote Selected
                             </button>
@@ -187,12 +180,20 @@
     @endif
 
     <script>
+        function promptPromotionKey() {
+            let key = prompt("Enter key to confirm:");
+            if (key !== null && key.trim() !== '') {
+                document.getElementById('promotionKeyInput').value = key;
+                document.getElementById('initiatePromotionForm').submit();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             document.body.addEventListener('change', function(e) {
                 
                 if (e.target.id === 'selectAll') {
                     const isChecked = e.target.checked;
-                    document.querySelectorAll('.student-cb:not([disabled])').forEach(cb => {
+                    document.querySelectorAll('.student-cb').forEach(cb => {
                         cb.checked = isChecked;
                     });
                     updateSelectedCount();
@@ -220,15 +221,9 @@
 
             
             
-            setTimeout(updateSelectedCount, 100);
+            setTimeout(updateSelectedCount, 100)
         });
     </script>
 
 </div> 
-@endsection
-
-@section('scripts')
-<script>
-    alert('The JavaScript is successfully loading!');
-</script>
 @endsection

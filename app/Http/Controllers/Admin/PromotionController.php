@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\SchoolClass;
+use App\Models\PromotionKey;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PromotionController extends Controller
 {
@@ -92,8 +94,49 @@ class PromotionController extends Controller
         return redirect()->route('admin.promote.index')->with('success', "{$updated} student(s) demoted successfully.");
     }
     
-    public function initiatePromotion(Request $request)
+    public function keyGeneratePage()
     {
-        return redirect()->route('admin.promote.index')->with('info', 'Initiate Promotion feature coming soon.');
+        $keys = PromotionKey::latest()->get();
+        return view('admin.student.promote.key', compact('keys'));
+    }
+
+    public function generateKey()
+    {
+        $key = Str::random(10);
+        PromotionKey::create([
+            'key' => $key,
+            'is_used' => false
+        ]);
+
+        return redirect()->back()->with('success', 'Promotion key generated successfully: ' . $key);
+    }
+
+    public function initiatePromotion(Request $request)
+    {      
+        $promoKey = PromotionKey::where('key', $request->key)->where('is_used', false)->first();
+
+        if (!$promoKey) {
+            return redirect()->back()->with('error', 'Invalid promotion key.');
+        }
+
+        $students = Student::where('is_promoted', 1)->get();
+
+        foreach ($students as $student) {
+            $student->is_promoted = 0;
+            $student->save();
+        }
+
+        $promoKey->is_used = true;
+        $promoKey->save();
+
+        return redirect()->route('admin.promote.index')->with('success', 'Promotion initiated successfully.');
+
+    }
+
+    public function deleteKey($id)
+    {
+        $key = PromotionKey::findOrFail($id);
+        $key->delete();
+        return redirect()->back()->with('success', 'Promotion key deleted successfully.');
     }
 }
