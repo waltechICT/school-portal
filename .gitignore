@@ -1,7 +1,7 @@
 *.log
 # /vendor
 # /node_modules
-# /public/storage
+/public/storage
 # /storage/*.key
 # /storage/logs/*
 # /storage/framework/cache/*
@@ -9,6 +9,7 @@
 # /storage/framework/testing/*
 # /storage/framework/views/*
 
+/public/uploads
 .env
 #/.env.backup
 # /.phpunit.result.cache
