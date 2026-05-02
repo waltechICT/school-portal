@@ -22,6 +22,7 @@ class Student extends Model
         'guardian_occupation',
         'student_passport',
         'is_enabled',
+        'is_promoted',
     ];
 
     public function schoolClass()
