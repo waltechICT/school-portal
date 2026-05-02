@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\SchoolClass;
 class Subject extends Model
 {
+    
     protected $casts = [
         'school_classes_id' => 'array',
     ];
