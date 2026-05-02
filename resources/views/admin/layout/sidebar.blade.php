@@ -113,7 +113,8 @@
             <ul class="sidebar-dropdown-menu">
                 <li><a href="{{ route('admin.students.index') }}">All Students</a></li>
                 <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
-                {{-- promote student --}}
+                {{-- generate promotion key --}}
+                <li><a href="{{ route('admin.promote.key') }}">Promotion Keys</a></li>
                 <li><a href="{{ route('admin.promote.index') }}">Promote / Demote</a></li>
             </ul>
         </li>
