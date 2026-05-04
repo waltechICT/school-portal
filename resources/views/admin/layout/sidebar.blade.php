@@ -57,7 +57,7 @@
             </ul>
         </li>
 
-        
+
         {{-- subject dropdown menu --}}
         <li class="nav-item has-dropdown">
             <a href="#" class="nav-link">
@@ -117,6 +117,14 @@
         </li>
 
         {{-- add other menus / tabs here --}}
+
+
+        {{-- mannage assignment no dropdown --}}
+        <li class="nav-item">
+            <a href="{{ route('admin.assignment.management') }}" class="nav-link">
+                <i class="fa-solid fa-clipboard-list fa-fw"></i> <span>Manage Assignments</span>
+            </a>
+        </li>
 
 
         {{-- end --}}

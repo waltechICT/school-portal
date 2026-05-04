@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\ManageAssignmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Admin\ArmController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SchoolInfoController;
 use App\Http\Controllers\Admin\RoleController;
+
+
 
 
 
@@ -64,8 +67,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/delete-school-info/{id}',[SchoolInfoController::class, 'destroy'])->name('admin.school-info.destroy');
 
     Route::resource('admin/staff', StaffController::class, ['as' => 'admin']);
-
     Route::get('/admin/staff-management', [StaffController::class, 'management'])->name('admin.staff.management');
 
-});
+    Route::get('/admin/assignment-management', [ManageAssignmentController::class, 'index'])->name('admin.assignment.management');
+    Route::get('/admin/assignment-management/create', [ManageAssignmentController::class, 'create'])->name('admin.assignment.create');
+    Route::post('/admin/assignment-management/store', [ManageAssignmentController::class, 'store'])->name('admin.assignment.store');
+    Route::get('/admin/assignment-management/{id}', [ManageAssignmentController::class, 'show'])->name('admin.assignment.show');
+    Route::get('/admin/assignment-management/{id}/edit', [ManageAssignmentController::class, 'edit'])->name('admin.assignment.edit');
+    Route::put('/admin/assignment-management/{id}/update', [ManageAssignmentController::class, 'update'])->name('admin.assignment.update');
+    Route::delete('/admin/assignment-management/{id}/delete', [ManageAssignmentController::class, 'destroy'])->name('admin.assignment.destroy');
 
+});
