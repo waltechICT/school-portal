@@ -20,23 +20,27 @@
                 <table class="table table-hover mb-0">
                     <thead class="bg-light">
                         <tr>
-                            <th class="px-4 py-3">id</th>
+                            {{-- Changed label to # for better visual context --}}
+                            <th class="px-4 py-3" style="width: 80px;">Id</th>
                             <th class="px-4 py-3">Name</th>
                             <th class="px-4 py-3">Title</th>
-                            <th class="px-4 py-3 text-center">Is_Enabled</th>
+                            <th class="px-4 py-3 text-center">Status</th>
                             <th class="px-4 py-3 text-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($assessment as $item)
                         <tr>
-                            {{-- id column --}}
-                            <td class="px-4 py-3 text-muted">{{ $item->id }}</td>
+                            {{-- 
+                                UPDATED: Using $loop->iteration ensures the 
+                                top row is always 1, the second is 2, etc. 
+                            --}}
+                            <td class="px-4 py-3 text-muted fw-bold">{{ $loop->iteration }}</td>
                             
-                            {{-- Name column (NOW USING THE 'name' FIELD) --}}
+                            {{-- Name column --}}
                             <td class="px-4 py-3 fw-bold text-dark">{{ $item->name }}</td>
                             
-                            {{-- Title column (NOW USING THE 'title' FIELD) --}}
+                            {{-- Title column --}}
                             <td class="px-4 py-3 text-muted">
                                 {{ Str::limit($item->title, 50) }}
                             </td>
