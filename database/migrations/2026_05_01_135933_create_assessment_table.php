@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('assessment', function (Blueprint $table) {
             $table->id();
+            $table->string('name');         // The "Name" column on your index
+            $table->text('title');          // The "Title" column (formerly description)
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

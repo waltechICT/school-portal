@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\SchoolInfoController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PortfolioController;
-use App\Http\Controllers\Admin\AssessmentManagementController;
+use App\Http\Controllers\Admin\AssessmentController;
 
 
 
