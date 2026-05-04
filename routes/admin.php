@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\ArmController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SchoolInfoController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\AssessmentManagementController;
 
 
 
@@ -31,6 +34,22 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/subjects/{id}/edit',[SubjectController::class, 'edit'])->name('admin.subjects.edit');
     Route::put('admin/subjects/{id}/update',[SubjectController::class, 'update'])->name('admin.subjects.update');
     Route::delete('admin/delete-subject/{id}',[SubjectController::class, 'destroy'])->name('admin.subjects.destroy');
+
+    Route::get('admin/notices', [NoticeController::class, 'index'])->name('admin.notices.index');
+    Route::get('admin/notices/create', [NoticeController::class, 'create'])->name('admin.notices.create');
+    Route::post('admin/notices/store', [NoticeController::class, 'store'])->name('admin.notices.store');
+    Route::get('admin/notices/{id}', [NoticeController::class, 'show'])->name('admin.notices.show');
+    Route::get('admin/notices/{id}/edit', [NoticeController::class, 'edit'])->name('admin.notices.edit');
+    Route::put('admin/notices/{id}/update', [NoticeController::class, 'update'])->name('admin.notices.update');
+    Route::delete('admin/notices/{id}', [NoticeController::class, 'destroy'])->name('admin.notices.destroy');
+
+    Route::get('admin/portfolio', [PortfolioController::class, 'index'])->name('admin.portfolio.index');
+    Route::get('admin/portfolio/create', [PortfolioController::class, 'create'])->name('admin.portfolio.create');
+    Route::post('admin/portfolio/store', [PortfolioController::class, 'store'])->name('admin.portfolio.store');
+    Route::get('admin/portfolio/{id}/edit', [PortfolioController::class, 'edit'])->name('admin.portfolio.edit');
+    Route::put('admin/portfolio/{id}/update', [PortfolioController::class, 'update'])->name('admin.portfolio.update');
+    Route::delete('admin/delete-portfolio/{id}', [PortfolioController::class, 'destroy'])->name('admin.portfolio.destroy');
+    Route::get('admin/portfolio/{id}', [PortfolioController::class, 'show'])->name('admin.portfolio.show');
 
     Route::get('admin/arms',[ArmController::class, 'index'])->name('admin.arms.index');
     Route::get('admin/arms/create',[ArmController::class, 'create'])->name('admin.arms.create');
@@ -62,6 +81,14 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/school-info/{id}/edit',[SchoolInfoController::class, 'edit'])->name('admin.school-info.edit');
     Route::put('admin/school-info/{id}/update',[SchoolInfoController::class, 'update'])->name('admin.school-info.update');
     Route::delete('admin/delete-school-info/{id}',[SchoolInfoController::class, 'destroy'])->name('admin.school-info.destroy');
+
+    Route::get('admin/assessment',[AssessmentController::class, 'index'])->name('admin.assessment.index');
+    Route::get('admin/assessment/create',[AssessmentController::class, 'create'])->name('admin.assessment.create');
+    Route::post('admin/assessment/store',[AssessmentController::class, 'store'])->name('admin.assessment.store');
+    Route::get('admin/assessment/{id}',[AssessmentController::class, 'show'])->name('admin.assessment.show');
+    Route::get('admin/assessment/{id}/edit',[AssessmentController::class, 'edit'])->name('admin.assessment.edit');
+    Route::put('admin/assessment/{id}/update',[AssessmentController::class, 'update'])->name('admin.assessment.update');
+    Route::delete('admin/delete-assessment/{id}',[AssessmentController::class, 'destroy'])->name('admin.assessment.destroy');
 
     Route::resource('admin/staff', StaffController::class, ['as' => 'admin']);
 

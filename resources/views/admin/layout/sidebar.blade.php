@@ -115,6 +115,45 @@
                 <li><a href="{{ route('admin.students.create') }}">Add Student</a></li>
             </ul>
         </li>
+        
+        {{--Notice Board--}}
+        <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-bell fa-fw"></i>
+                <span>Notice</span>
+                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+            </a>
+            <ul class="sidebar-dropdown-menu">
+                <li><a href="{{ route('admin.notices.index') }}">All Notices</a></li>
+                <li><a href="{{ route('admin.notices.create') }}">Add Notice</a></li>
+            </ul>
+        </li>
+        
+        {{--Portfolio--}}
+        <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-briefcase fa-fw"></i>
+                <span>Portfolio</span>
+                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+            </a>
+            <ul class="sidebar-dropdown-menu">
+                <li><a href="{{ route('admin.portfolio.index') }}">All portfolios</a></li>
+                <li><a href="{{ route('admin.portfolio.create') }}">Add portfolio</a></li>
+            </ul>
+        </li>
+        
+        {{--Assessment Management--}}
+        <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-file-signature fa-fw"></i>
+                <span>Assessment Management</span>
+                <i class="fa-solid fa-chevron-down dropdown-toggle-icon"></i>
+            </a>
+            <ul class="sidebar-dropdown-menu">
+                <li><a href="{{ route('admin.assessment.index') }}">All Assessments</a></li>
+                <li><a href="{{ route('admin.assessment.create') }}">Add Assessment</a></li>
+            </ul>
+        </li>
 
         <li class="nav-item">
             <a href="#" class="nav-link">
