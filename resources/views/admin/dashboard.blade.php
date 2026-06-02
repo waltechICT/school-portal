@@ -17,7 +17,7 @@
                     </div>
                     <div>
                         <p class="text-muted small fw-bold text-uppercase tracking-wide mb-1">Total Users</p>
-                        <h3 class="fs-3 fw-bold text-dark mb-0">{{ number_format(5) }}</h3>
+                        <h3 class="fs-3 fw-bold text-dark mb-0">{{ $userCount ?? 0 }}</h3>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
                         <i class="fa-solid fa-box-open fs-3"></i>
                     </div>
                     <div>
-                        <p class="text-muted small fw-bold text-uppercase tracking-wide mb-1">Total Products</p>
-                        <h3 class="fs-3 fw-bold text-dark mb-0">{{ number_format(5) }}</h3>
+                        <p class="text-muted small fw-bold text-uppercase tracking-wide mb-1">Total Sermons</p>
+                        <h3 class="fs-3 fw-bold text-dark mb-0">{{ $sermonCount ?? 0 }}</h3>
                     </div>
                 </div>
             </div>

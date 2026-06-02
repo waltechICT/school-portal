@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Gallery;
+use App\Models\Sermon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //function to show the home page
     public function index()
     {
-        return view('home');
+        $recentSermons = Sermon::orderBy('date', 'desc')->take(6)->get();
+        $galleries = Gallery::latest()->take(6)->get();
+        
+        return view('index', compact('recentSermons', 'galleries')); 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $userCount = DB::table('users')->count();
+        $sermonCount = DB::table('sermons')->count();
+        return view('admin.dashboard', compact('userCount', 'sermonCount'));
     }
 
     /**

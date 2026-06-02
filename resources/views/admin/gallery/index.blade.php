@@ -1,0 +1,101 @@
+@extends('admin.layout.app')
+{{-- page title --}}
+@section('page_title', 'Gallery')
+@section('content')
+
+<div class="container-fluid py-2">
+    <div class="mb-4">
+        <h2 class="fs-4 fw-bold text-dark mb-1">{{ 'Gallery Management' }}</h2>
+        <p class="text-muted small mb-0">Manage and view all gallery in the system.</p>
+
+        {{-- Create gallery button with plus icon--}}
+        <a href="{{ route('admin.galleries.create') }}" class="btn btn-sm btn-primary mt-2">
+            <i class="fa-solid fa-plus"></i> Add New Gallery
+        </a>        
+    </div>
+
+    <div class="card border border-light shadow-sm rounded-4 overflow-hidden">
+        <div class="card-header bg-white p-4 border-bottom d-flex flex-wrap gap-2 justify-content-between align-items-center">
+            <h5 class="fw-bold text-dark mb-0 fs-6">Gallery List</h5>
+            <input type="text" class="form-control form-control-sm w-auto" placeholder="Search gallery...">
+        </div>
+
+        <div class="card-body p-0">
+            @if($galleries->count() == 0)
+                <div class="p-5 text-center text-muted">
+                    <i class="fa-solid fa-images fa-3x mb-3 text-secondary"></i>
+                    <p>No gallery items found.</p>
+                </div>
+            @else
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="px-4 py-3">SN</th>
+                                <th class="px-4 py-3">Image</th>
+                                <th class="px-4 py-3">Title</th>
+                                <th class="px-4 py-3">Is Enabled</th>
+                                <th class="px-4 py-3">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach($galleries as $key => $gallery)
+                                <tr>
+                                    <td class="px-4 py-3">{{ $key + 1 }}</td>
+
+                                    <td class="px-4 py-3">
+                                        @if($gallery->images && count($gallery->images) > 0)
+                                            <div class="position-relative d-inline-block">
+                                                <img src="{{ asset($gallery->images[0]) }}" alt="{{ $gallery->title }}" class="img-thumbnail" style="width: 80px; height: 50px; object-fit: cover;">
+                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                                    {{ count($gallery->images) }}
+                                                </span>
+                                            </div>
+                                        @else
+                                            <span class="text-muted">No Images</span>
+                                        @endif
+                                    </td>
+
+                                    <td class="px-4 py-3">
+                                        <strong>{{ $gallery->title }}</strong>
+                                    </td>
+
+                                    <td class="px-4 py-3">
+                                        @if($gallery->is_enabled == 1)
+                                            <span class="badge bg-success">Enabled</span>
+                                        @else
+                                            <span class="badge bg-secondary">Disabled</span>
+                                        @endif
+                                    </td>
+
+                                    <td class="px-4 py-3">
+                                        <div class="d-flex flex-nowrap gap-1">
+                                            <a href="{{ route('admin.galleries.show', $gallery->id) }}" class="btn btn-sm btn-info text-nowrap">
+                                                <i class="fa-solid fa-eye"></i> View
+                                            </a>
+
+                                            <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="btn btn-sm btn-warning text-nowrap">
+                                                <i class="fa-solid fa-pencil"></i> Edit
+                                            </a>
+
+                                            <form action="{{ route('admin.galleries.destroy', $gallery->id) }}" method="POST" class="d-inline-block m-0" onsubmit="return confirm('Are you sure you want to delete this gallery item?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger text-nowrap">
+                                                    <i class="fa-solid fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+
+@endsection
